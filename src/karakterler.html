@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JJK Merkez — Karakterler</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body data-page="characters">
+    <div id="topbar"></div>
+
+    <main>
+      <div class="section">
+        <div class="section-head">
+          <h2>Karakterler</h2>
+          <span class="sub" id="charCount"></span>
+          <div class="toolbar">
+            <input class="input" id="charSearch" type="search" placeholder="Karakter veya teknik ara..." />
+            <select class="select" id="statusFilter">
+              <option value="all">Tüm durumlar</option>
+              <option value="Hayatta">Hayatta</option>
+              <option value="Hayatını kaybetti">Hayatını kaybetti</option>
+              <option value="Bilinmiyor">Bilinmiyor</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="chips" id="sideChips" style="margin-bottom:24px">
+          <button class="chip active" data-side="all">Hepsi</button>
+          <button class="chip" data-side="Büyücü">Büyücüler</button>
+          <button class="chip" data-side="Lanet">Lanetler</button>
+          <button class="chip" data-side="Diğer">Diğer</button>
+        </div>
+
+        <div class="char-grid" id="charGrid">
+          <p class="empty">Yükleniyor...</p>
+        </div>
+      </div>
+    </main>
+
+    <div class="modal-overlay" id="charModal">
+      <div class="modal"></div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script src="js/app.js"></script>
+    <script src="js/characters.js"></script>
+  </body>
+</html>

@@ -1,0 +1,133 @@
+{
+  "readUrl": "https://mangaplus.shueisha.co.jp/titles/100034",
+  "vizUrl": "https://www.viz.com/shonenjump/chapters/jujutsu-kaisen",
+  "arcs": [
+    {
+      "id": "yuji-itadori",
+      "title": "Yuji Itadori (Başlangıç)",
+      "chapters": "1 - 8",
+      "episodes": "S1 B1-4",
+      "img": "img/yuji.jpg",
+      "summary": "Yuji'nin Sukuna'nın parmağını yutup büyücü dünyasına adım atışı.",
+      "longSummary": "Sıradan bir lise öğrencisi olan Yuji Itadori, dedesinin ölümünün ardından okul oktültizm kulübünün sakladığı lanetli bir nesneyle —Sukuna'nın parmağıyla— karşılaşır. Arkadaşlarını kurtarmak için parmağı yutar ve Lanetlerin Kralı Ryomen Sukuna'nın kabı olur. İnfaz edilmesi gereken Yuji, Gojo'nun araya girmesiyle Tokyo Jujutsu Lisesi'ne kabul edilir.",
+      "keyEvents": [
+        "Yuji'nin Sukuna'nın parmağını yutması",
+        "Megumi ve Gojo ile tanışma",
+        "Tokyo Jujutsu Lisesi'ne giriş"
+      ]
+    },
+    {
+      "id": "cursed-womb",
+      "title": "Lanetli Rahim: Ölü Manzara",
+      "chapters": "9 - 13",
+      "episodes": "S1 B5-7",
+      "img": "img/megumi.jpg",
+      "summary": "Yuji, Megumi ve Nobara'nın ilk ciddi sınavı; özel sınıf bir lanetle yüzleşme.",
+      "longSummary": "Genç ekip, bir ıslah evinde ortaya çıkan özel sınıfa yakın bir lanetle başa çıkmak için görevlendirilir. Nobara Kugisaki ekibe katılır. Görev beklenenden çok daha tehlikeli çıkar ve Yuji ilk kez ölümle yüz yüze gelir; bedenini Sukuna'ya bırakmak zorunda kalır.",
+      "keyEvents": [
+        "Nobara'nın ekibe katılması",
+        "Yuji'nin görünüşteki 'ölümü'",
+        "Sukuna'nın kontrolü kısa süreliğine ele alması"
+      ]
+    },
+    {
+      "id": "vs-mahito",
+      "title": "Nanami & Mahito'nun Ortaya Çıkışı",
+      "chapters": "14 - 30",
+      "episodes": "S1 B8-13",
+      "img": "img/mahito.jpg",
+      "summary": "Nanami ile tanışma ve insan ruhunu hedef alan lanet Mahito'nun sahneye çıkışı.",
+      "longSummary": "Yuji, deneyimli büyücü Kento Nanami ile çalışmaya başlar. Bu sırada insan ruhunu şekillendirebilen özel sınıf lanet Mahito, Junpei adında yalnız bir gençle dostluk kurarak onu manipüle eder. Yuji ilk kez bir lanetin yol açtığı trajediyle yüzleşir ve düşmanlarının ne kadar acımasız olabileceğini görür.",
+      "keyEvents": [
+        "Nanami ile ilk görev",
+        "Junpei'in trajik kaderi",
+        "Yuji ile Mahito'nun ilk karşılaşması"
+      ]
+    },
+    {
+      "id": "kyoto-goodwill",
+      "title": "Kyoto İyi Niyet Etkinliği",
+      "chapters": "32 - 54",
+      "episodes": "S2 (Shibuya öncesi)",
+      "img": "img/todo.jpg",
+      "summary": "İki okulun karşılaşması, Todo & Yuji dostluğu ve perde arkasındaki komplo.",
+      "longSummary": "Tokyo ve Kyoto okulları geleneksel dostluk etkinliğinde karşı karşıya gelir. Ancak etkinlik, Yuji'yi öldürmeye yönelik gizli bir emir yüzünden tehlikeye dönüşür. Yuji, Aoi Todo ile beklenmedik bir dostluk kurar ve Kara Şimşek'i öğrenir. Perde arkasında ise daha büyük bir komplo şekillenmektedir.",
+      "keyEvents": [
+        "Todo & Yuji'nin efsanevi dostluğu",
+        "Yuji'nin Kara Şimşek'i kavraması",
+        "Hanami ve Mahito'nun saldırısı"
+      ]
+    },
+    {
+      "id": "death-painting",
+      "title": "Ölüm Tablosu Kardeşler",
+      "chapters": "55 - 64",
+      "episodes": "—",
+      "img": "img/choso.png",
+      "summary": "Lanetli cesetlerden doğan kardeşler ve Yuji'nin Kara Şimşek serisi.",
+      "longSummary": "Sukuna'nın parmaklarını toplama görevi sırasında, lanetli cesetlerden doğan 'Ölüm Tablosu' kardeşler ortaya çıkar. Eso ve Kechizu ile yapılan savaşta Yuji ve Nobara üst üste Kara Şimşek çıkararak güçlerini kanıtlar. En büyük kardeş Choso ise ilerideki olaylarda kritik bir rol üstlenecektir.",
+      "keyEvents": [
+        "Eso & Kechizu ile savaş",
+        "Nobara'nın Kara Şimşek'i",
+        "Choso'nun gölgeden izlemesi"
+      ]
+    },
+    {
+      "id": "hidden-inventory",
+      "title": "Gizli Envanter / Erken Ölüm (Gojo'nun Geçmişi)",
+      "chapters": "65 - 79",
+      "episodes": "S2 B1-5",
+      "img": "img/geto.png",
+      "summary": "Genç Gojo ve Geto'nun geçmişi; dostluğun yıkılışının başlangıcı.",
+      "longSummary": "On bir yıl öncesine gidilir. Genç Satoru Gojo ve Suguru Geto, 'Yıldız Plazma Kabı' Riko Amanai'yi Tengen ile birleştirmek üzere koruma göreviyle görevlendirilir. Görev felaketle sonuçlanır; bu olay Gojo'nun 'en güçlü' olarak yükselişini ve Geto'nun ideallerini kaybedip karanlığa düşüşünü tetikler.",
+      "keyEvents": [
+        "Riko Amanai koruma görevi",
+        "Toji Fushiguro'nun saldırısı",
+        "Gojo'nun uyanışı, Geto'nun kopuşu"
+      ]
+    },
+    {
+      "id": "shibuya",
+      "title": "Shibuya Olayı",
+      "chapters": "79 - 136",
+      "episodes": "S2 B6-23",
+      "img": "img/gojo.jpg",
+      "summary": "Serinin kırılma noktası: Gojo'nun mühürlenmesi, ağır kayıplar ve tam kaos.",
+      "longSummary": "31 Ekim gecesi Shibuya, lanetler ve lanet kullanıcıları tarafından sivillerle birlikte kuşatılır. Düşmanların planı tek bir hedefe odaklıdır: Gojo Satoru'yu sahadan çekmek. Gojo, Prison Realm ile mühürlenince büyücü dünyası dengesini yitirir. Bu ark, çok sayıda sevilen karakterin kaybedildiği, serinin en yıkıcı dönüm noktasıdır.",
+      "keyEvents": [
+        "Gojo'nun Prison Realm ile mühürlenmesi",
+        "Nanami ve Nobara'nın akıbeti",
+        "Yuji'nin Mahito ile hesaplaşması",
+        "Sukuna'nın zincirlerinden boşalması"
+      ]
+    },
+    {
+      "id": "culling-game",
+      "title": "Eleme Oyunu",
+      "chapters": "143 - 220",
+      "episodes": "S3",
+      "img": "img/kinji.jpg",
+      "summary": "Japonya'ya yayılan ölümcül büyücü oyunu, yeni müttefikler ve Sukuna'nın yükselişi.",
+      "longSummary": "Kenjaku, Japonya genelinde bariyerlerle ayrılmış ölümcül bir 'oyun' başlatır: katılımcılar puan toplamak için birbirini öldürmek zorundadır. Yuji ve Megumi, oyunu durdurmak için yeni güçlü müttefikler (Hakari, Higuruma ve daha fazlası) ararken, geçmişten yeniden bedenlenen eski çağ büyücüleriyle çarpışır.",
+      "keyEvents": [
+        "Hakari ve Higuruma'nın katılması",
+        "Eski çağ büyücülerinin dönüşü (Kashimo, Yorozu)",
+        "Megumi'nin trajedisi ve Sukuna'nın planı"
+      ]
+    },
+    {
+      "id": "shinjuku-showdown",
+      "title": "Shinjuku Hesaplaşması (Final)",
+      "chapters": "221 - 271",
+      "episodes": "—",
+      "img": "img/sukuna.jpg",
+      "summary": "Gojo & Yuji'nin Sukuna'ya karşı son büyük savaşı ve serinin finali.",
+      "longSummary": "Mühürden kurtulan Gojo, Sukuna ile tüm büyücü dünyasının kaderini belirleyecek efsanevi düelloya tutuşur. Ardından Yuji ve müttefikleri, Lanetlerin Kralı'na karşı son bir kuşatma başlatır. Seri, büyük fedakârlıklar ve uzun bir mücadelenin ardından kapanışını yapar.",
+      "keyEvents": [
+        "Gojo vs Sukuna efsanevi düellosu",
+        "Yuji ve müttefiklerinin son saldırısı",
+        "Serinin finali"
+      ]
+    }
+  ]
+}

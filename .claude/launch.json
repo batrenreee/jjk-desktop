@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "jjk-web",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["--yes", "serve", "C:/Users/ASUS/jjk-desktop/src", "-l", "5577"],
+      "port": 5577
+    }
+  ]
+}

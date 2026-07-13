@@ -1,0 +1,85 @@
+{
+  "questions": [
+    {
+      "q": "En güçlü yönün hangisi?",
+      "options": [
+        { "label": "Zekâ & Özgüven", "value": "Gojo" },
+        { "label": "Fiziksel Güç & Sadakat", "value": "Itadori" },
+        { "label": "Kaos & Yıkım", "value": "Sukuna" },
+        { "label": "Strateji & Potansiyel", "value": "Megumi" }
+      ]
+    },
+    {
+      "q": "Takımda hangi rolü üstlenirsin?",
+      "options": [
+        { "label": "Mutlak Lider (Tek Başına Ordu)", "value": "Gojo" },
+        { "label": "Taktiksel Destek", "value": "Megumi" },
+        { "label": "Ön Cephe Savaşçısı", "value": "Itadori" },
+        { "label": "Agresif Saldırı", "value": "Nobara" }
+      ]
+    },
+    {
+      "q": "Zor bir durumla karşılaştığında...",
+      "options": [
+        { "label": "Eğlenirim, rakibi ezerim.", "value": "Sukuna" },
+        { "label": "Rahat davranırım, hallederim.", "value": "Gojo" },
+        { "label": "Sevdiklerimi korumak için ölürüm.", "value": "Itadori" },
+        { "label": "Plan yapar, risk alırım.", "value": "Megumi" }
+      ]
+    },
+    {
+      "q": "Senin için 'Güç' nedir?",
+      "options": [
+        { "label": "İstediğin her şeyi yapabilmek.", "value": "Sukuna" },
+        { "label": "Kendin olabilmek.", "value": "Nobara" },
+        { "label": "Zayıfları koruyabilmek.", "value": "Gojo" },
+        { "label": "İnsanları kurtarabilmek.", "value": "Megumi" }
+      ]
+    },
+    {
+      "q": "Hangi renk seni yansıtır?",
+      "options": [
+        { "label": "Mavi / Mor (Sonsuzluk)", "value": "Gojo" },
+        { "label": "Kan Kırmızısı", "value": "Sukuna" },
+        { "label": "Gölge Siyahı", "value": "Megumi" },
+        { "label": "Turuncu / Siyah", "value": "Itadori" }
+      ]
+    },
+    {
+      "q": "Bir savaşta ilk hamlen ne olur?",
+      "options": [
+        { "label": "Rakibi analiz eder, zayıf noktayı bulurum.", "value": "Megumi" },
+        { "label": "En sert yumruğumu atarım.", "value": "Itadori" },
+        { "label": "Rakibe gücümü gösterip korku salarım.", "value": "Sukuna" },
+        { "label": "Mesafeyi kontrol eder, üstünlüğü elime alırım.", "value": "Gojo" }
+      ]
+    }
+  ],
+  "results": {
+    "Gojo": {
+      "name": "Satoru Gojo",
+      "img": "img/gojo.jpg",
+      "desc": "Sen mutlak güçsün! Kendine güvenin tavan yapmış durumda ama bunun altını doldurabiliyorsun. Biraz gevşek görünebilirsin ama sevdiklerin için dünyayı yakarsın. Sonsuzluk senin elinde!"
+    },
+    "Sukuna": {
+      "name": "Ryomen Sukuna",
+      "img": "img/sukuna.jpg",
+      "desc": "Sen Lanetlerin Kralı'sın! Kurallar umurunda değil, sadece kendi zevkine ve gücüne bakıyorsun. Kaostan besleniyorsun ve etrafındakiler senin gücünden korkuyor."
+    },
+    "Itadori": {
+      "name": "Yuji Itadori",
+      "img": "img/yuji.jpg",
+      "desc": "Senin kalbin altından! Fiziksel gücün inanılmaz ama asıl gücün sarsılmaz iraden ve sadakatin. Arkadaşların için her türlü acıya göğüs gerebilirsin."
+    },
+    "Megumi": {
+      "name": "Megumi Fushiguro",
+      "img": "img/megumi.jpg",
+      "desc": "Potansiyelin sınırsız! Sessiz, sakin ve stratejiksin. Gereksiz riskleri sevmezsin ama yeri geldiğinde gölgelerin içinden çıkan bir canavara dönüşebilirsin."
+    },
+    "Nobara": {
+      "name": "Nobara Kugisaki",
+      "img": "img/nobara.jpg",
+      "desc": "Sen sert ve havalısın! Kendin olmaktan asla taviz vermiyorsun. Çekiç ve çivilerinle düşmanlarına korku salarken, dostlarına karşı oldukça koruyucusun."
+    }
+  }
+}

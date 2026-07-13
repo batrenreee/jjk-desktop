@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JJK Merkez — Ana Sayfa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body data-page="home">
+    <div id="topbar"></div>
+
+    <section class="hero">
+      <video autoplay muted loop playsinline poster="img/opening.jpg">
+        <source src="videos/jujutsu-kaisen.mp4" type="video/mp4" />
+      </video>
+      <h1>Jujutsu Kaisen</h1>
+      <p>En güncel anime ve manga haberleri — masaüstünde</p>
+    </section>
+
+    <main>
+      <div class="section">
+        <div class="section-head">
+          <h2>Son Haberler</h2>
+          <span class="sub">Bir karta tıkla, haber sistem tarayıcında açılsın</span>
+        </div>
+        <div class="news-grid" id="newsGrid">
+          <p class="empty">Yükleniyor...</p>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer"></div>
+
+    <script src="js/app.js"></script>
+    <script src="js/news.js"></script>
+  </body>
+</html>
