@@ -1,55 +1,55 @@
 # 🌌 JJK Merkez (jjk-desktop)
 
-Eski statik Jujutsu Kaisen fan sitesinin **Tauri** kullanılarak masaüstü uygulamasına dönüştürülmüş, veri odaklı ve etkileşimli yeni versiyonu.
+The new data-driven and interactive desktop application version of the old static Jujutsu Kaisen fan site, built with **Tauri**.
 
-## ✨ Özellikler
+## ✨ Features
 
-*   📰 **Haber Merkezi:** `data/news.json` dosyasından beslenen, tarihe göre sıralı dinamik kartlar. Haberlere tıklandığında sistemin varsayılan tarayıcısında açılır.
-*   👤 **Karakter Ansiklopedisi:** 23 farklı karakter; arama, taraf (Büyücü / Lanet / Diğer) ve durum filtreleme özellikli, detaylı bilgi modalı.
-*   🎯 **Karakter Testi:** İlerleme çubuklu, adım adım ilerleyen ve puanlamalı interaktif test. Sonuçlar kopyalanabilir veya 𝕏 / WhatsApp üzerinden kolayca paylaşılabilir.
-*   📖 **Manga Takip Listesi:** Okunan arkların `localStorage` üzerinde saklandığı, tamamlama istatistiklerini gösteren takip sistemi.
-*   🎨 **Gelişmiş Tema Sistemi:** Açık/Koyu mod desteği ve 4 farklı vurgu rengi seçeneği (kullanıcı tercihleri yerel olarak kaydedilir).
-*   💫 **Modern Arayüz:** Scroll-reveal animasyonları ve dar pencereler/ekranlar için duyarlı hamburger menü tasarımı.
+*   📰 **News Hub:** Dynamic cards sorted by date, powered by `data/news.json`. Clicking a news item opens it in the system's default browser.
+*   👤 **Character Encyclopedia:** 23 different characters; features search, faction (Sorcerer / Curse / Other) and status filtering, along with a detailed information modal.
+*   🎯 **Character Quiz:** Step-by-step interactive quiz with progress bars and scoring. Results can be copied or easily shared via 𝕏 / WhatsApp.
+*   📖 **Manga Tracker:** A tracking system where read arcs are stored in `localStorage`, displaying completion statistics.
+*   🎨 **Advanced Theme System:** Light/Dark mode support and 4 different accent color options (user preferences are saved locally).
+*   💫 **Modern UI:** Scroll-reveal animations and a responsive hamburger menu design for narrow windows/screens.
 
-## 📁 Proje Yapısı
+## 📁 Project Structure
 
 ```text
 📦 jjk-desktop
-├── 📂 src/                  # Frontend (Tauri bunu doğrudan sunar)
-│   ├── 📄 index.html        # Ana sayfa (haberler)
-│   ├── 📄 karakterler.html  # Karakter ızgarası ve detayları
-│   ├── 📄 manga.html        # Manga takip sistemi
-│   ├── 📄 test.html         # Karakter testi
-│   ├── 📂 css/              # app.css (tüm stiller ve tema değişkenleri)
-│   ├── 📂 js/               # app.js (ortak) + sayfa bazlı modüller
-│   ├── 📂 data/             # Haber, karakter ve manga için JSON verileri
-│   └── 📂 img/, 📂 videos/  # Medya dosyaları ve hero videosu
-├── 📂 src-tauri/            # Rust tarafı (pencere yönetimi ve paketleme)
-├── 📄 server.cjs            # Tarayıcı önizlemesi için mini statik sunucu
-└── 📄 setup-and-run.ps1     # Reboot sonrası kurulumu bitirip uygulamayı açar
+├── 📂 src/                  # Frontend (served directly by Tauri)
+│   ├── 📄 index.html        # Home page (news)
+│   ├── 📄 karakterler.html  # Character grid and details
+│   ├── 📄 manga.html        # Manga tracking system
+│   ├── 📄 test.html         # Character quiz
+│   ├── 📂 css/              # app.css (all styles and theme variables)
+│   ├── 📂 js/               # app.js (common) + page-based modules
+│   ├── 📂 data/             # JSON data for news, characters, and manga
+│   └── 📂 img/, 📂 videos/  # Media files and hero video
+├── 📂 src-tauri/            # Rust side (window management and bundling)
+├── 📄 server.cjs            # Mini static server for browser preview only
+└── 📄 setup-and-run.ps1     # Finishes setup after reboot and launches the app
 ```
 
-## 🛠️ Gereksinimler
+## 🛠️ Requirements
 
-*   **Node.js** (Kurulu olmalıdır)
-*   **Rust / rustup** (Kurulu olmalıdır)
-*   **Visual Studio 2022 C++ Build Tools** (`setup-and-run.ps1` betiği otomatik kurar)
-*   **WebView2** (Windows 11'de varsayılan olarak yüklü gelir)
+*   **Node.js** (Must be installed)
+*   **Rust / rustup** (Must be installed)
+*   **Visual Studio 2022 C++ Build Tools** (Automatically installed by the `setup-and-run.ps1` script)
+*   **WebView2** (Comes pre-installed on Windows 11)
 
-## 🚀 Çalıştırma
+## 🚀 Running the App
 
-İlk kurulumda gerekli araçlar eksikse, işlemi otomatize etmek için PowerShell üzerinden `setup-and-run.ps1` dosyasını çalıştırın.
+If required tools are missing during your first setup, run the `setup-and-run.ps1` file via PowerShell to automate the installation process.
 
-Geliştirme penceresini başlatmak için:
+To start the development window:
 ```bash
 npm run tauri dev
 ```
 
-Kurulabilir `.exe` / `.msi` çıktıları üretmek için:
+To build installable `.exe` / `.msi` outputs:
 ```bash
 npm run tauri build
 ```
 
-## 👤 Geliştirici
+## 👤 Developer
 
-**Eren** — Bu proje tamamen eğitim ve eğlence amaçlı geliştirilmiş bir hayran projesidir.
+**Eren** — This is a fan project developed purely for educational and entertainment purposes.
