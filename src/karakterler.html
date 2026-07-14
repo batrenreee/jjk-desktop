@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JJK Merkez — Karakterler</title>
+    <title>JJK Merkez — Karakter Vikisi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/app.css" />
@@ -11,41 +11,72 @@
   <body data-page="characters">
     <div id="topbar"></div>
 
-    <main>
-      <div class="section">
-        <div class="section-head">
-          <h2>Karakterler</h2>
-          <span class="sub" id="charCount"></span>
-          <div class="toolbar">
-            <input class="input" id="charSearch" type="search" placeholder="Karakter veya teknik ara..." />
+    <main class="wiki-page">
+      <section class="wiki-hero">
+        <div>
+          <div class="eyebrow">JJK MERKEZ • EVREN REHBERİ</div>
+          <h1>Karakter Vikisi</h1>
+          <p>Jujutsu Kaisen evreninin büyücüleri, lanetleri, klanları ve Culling Game oyuncuları. Bir karakteri seçerek güçlerini, tekniğini, zayıflıklarını, hikâyesini ve ilişkilerini incele.</p>
+        </div>
+        <div class="wiki-summary" aria-label="Viki özeti">
+          <div><strong id="totalCount">—</strong><span>karakter</span></div>
+          <div><strong id="groupCount">—</strong><span>kategori</span></div>
+          <div><strong>Final</strong><span>manga kapsamı</span></div>
+        </div>
+      </section>
+
+      <section class="spoiler-banner" id="spoilerBanner">
+        <div><strong>⚠ Manga spoilerları</strong><span>Hikâye ve durum bilgileri manganın finaline kadar olaylar içerir.</span></div>
+        <label class="spoiler-switch"><input id="spoilerToggle" type="checkbox" /><span></span> Spoilerları göster</label>
+      </section>
+
+      <div class="wiki-layout">
+        <aside class="wiki-sidebar">
+          <div class="filter-block">
+            <label for="charSearch">Vikide ara</label>
+            <input class="input" id="charSearch" type="search" placeholder="İsim, teknik, klan..." autocomplete="off" />
+          </div>
+          <div class="filter-block">
+            <div class="filter-label">Kategori</div>
+            <div class="side-filter" id="sideChips"></div>
+          </div>
+          <div class="filter-block">
+            <label for="affiliationFilter">Bağlılık</label>
+            <select class="select" id="affiliationFilter"><option value="all">Tüm bağlılıklar</option></select>
+          </div>
+          <div class="filter-block">
+            <label for="statusFilter">Durum</label>
             <select class="select" id="statusFilter">
               <option value="all">Tüm durumlar</option>
               <option value="Hayatta">Hayatta</option>
               <option value="Hayatını kaybetti">Hayatını kaybetti</option>
               <option value="Bilinmiyor">Bilinmiyor</option>
+              <option value="Uygulanamaz">Uygulanamaz</option>
             </select>
           </div>
-        </div>
+          <button class="clear-filters" id="clearFilters">Filtreleri temizle</button>
+        </aside>
 
-        <div class="chips" id="sideChips" style="margin-bottom:24px">
-          <button class="chip active" data-side="all">Hepsi</button>
-          <button class="chip" data-side="Büyücü">Büyücüler</button>
-          <button class="chip" data-side="Lanet">Lanetler</button>
-          <button class="chip" data-side="Diğer">Diğer</button>
-        </div>
-
-        <div class="char-grid" id="charGrid">
-          <p class="empty">Yükleniyor...</p>
-        </div>
+        <section class="wiki-results">
+          <div class="results-head">
+            <div><h2>Tüm karakterler</h2><span class="sub" id="charCount">Yükleniyor…</span></div>
+            <select class="select" id="sortSelect" aria-label="Sıralama">
+              <option value="featured">Öne çıkanlar</option>
+              <option value="az">İsim: A–Z</option>
+              <option value="za">İsim: Z–A</option>
+            </select>
+          </div>
+          <div class="active-filters" id="activeFilters"></div>
+          <div class="char-grid" id="charGrid"><p class="empty">Yükleniyor…</p></div>
+        </section>
       </div>
     </main>
 
-    <div class="modal-overlay" id="charModal">
-      <div class="modal"></div>
+    <div class="modal-overlay wiki-overlay" id="charModal" role="dialog" aria-modal="true" aria-label="Karakter maddesi">
+      <article class="modal wiki-modal"></article>
     </div>
 
     <div id="footer"></div>
-
     <script src="js/app.js"></script>
     <script src="js/characters.js"></script>
   </body>
