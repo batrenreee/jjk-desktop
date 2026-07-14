@@ -1,156 +1,198 @@
-/* manga.js — Manga arklarını listeler; karta tıklayınca detay modalı açar,
-   okuma durumu localStorage'da saklanır, resmî okuyucuya bağlanır. */
+/* manga.js — Cilt 0–30 kütüphanesi, arama, filtreleme ve yerel okuma takibi. */
 (function () {
   "use strict";
 
-  const KEY = "jjk-read-arcs";
-  let DATA = null;
-  let ARCS = [];
+  const STORAGE_KEY = "jjk-read-volumes-v2";
+  let data = null;
+  let volumes = [];
   let read = {};
+  let activeFilter = "all";
+  let query = "";
 
-  function load() {
-    try { read = JSON.parse(localStorage.getItem(KEY)) || {}; }
+  function loadProgress() {
+    try { read = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
     catch { read = {}; }
   }
-  function save() { localStorage.setItem(KEY, JSON.stringify(read)); }
+
+  function saveProgress() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(read));
+  }
+
+  function setRead(id, value) {
+    if (value) read[id] = true;
+    else delete read[id];
+    saveProgress();
+    renderStats();
+    renderVolumes();
+  }
 
   function renderStats() {
-    const total = ARCS.length;
-    const done = ARCS.filter((a) => read[a.id]).length;
-    const pct = total ? Math.round((done / total) * 100) : 0;
-    const host = document.querySelector("#trackerStats");
+    const total = volumes.length;
+    const done = volumes.filter((volume) => read[volume.id]).length;
+    const percent = total ? Math.round((done / total) * 100) : 0;
+    const stats = document.querySelector("#trackerStats");
+    const ring = document.querySelector("#mangaProgressRing");
+
+    if (stats) {
+      stats.innerHTML = `
+        <div class="stat-box"><div class="num">${total}</div><div class="lbl">Toplam cilt</div></div>
+        <div class="stat-box"><div class="num">${done}</div><div class="lbl">Okunan</div></div>
+        <div class="stat-box"><div class="num">${total - done}</div><div class="lbl">Sırada</div></div>
+        <div class="stat-box"><div class="num">271</div><div class="lbl">Ana bölüm</div></div>`;
+    }
+
+    if (ring) {
+      ring.style.setProperty("--progress", `${percent * 3.6}deg`);
+      ring.querySelector("strong").textContent = `${percent}%`;
+    }
+  }
+
+  function visibleVolumes() {
+    return volumes.filter((volume) => {
+      const isRead = !!read[volume.id];
+      if (activeFilter === "read" && !isRead) return false;
+      if (activeFilter === "unread" && isRead) return false;
+      if (!query) return true;
+      const haystack = `${volume.number} ${volume.title} ${volume.arc} ${volume.chapters} ${volume.summary}`.toLocaleLowerCase("tr");
+      return haystack.includes(query);
+    });
+  }
+
+  function renderVolumes() {
+    const host = document.querySelector("#volumeGrid");
     if (!host) return;
-    host.innerHTML = `
-      <div class="stat-box"><div class="num">${done}/${total}</div><div class="lbl">Okunan ark</div></div>
-      <div class="stat-box"><div class="num">%${pct}</div><div class="lbl">Tamamlanma</div></div>
-      <div class="stat-box"><div class="num">${total - done}</div><div class="lbl">Kalan ark</div></div>`;
-  }
+    const list = visibleVolumes();
 
-  function render() {
-    const host = document.querySelector("#arcList");
-    host.innerHTML = ARCS.map(
-      (a) => `
-      <div class="arc-card ${read[a.id] ? "done" : ""}" data-id="${a.id}">
-        <img src="${JJK.escapeHtml(a.img)}" alt="${JJK.escapeHtml(a.title)}" loading="lazy" />
-        <div class="arc-info">
-          <div class="ch">Bölüm ${JJK.escapeHtml(a.chapters)}${a.episodes && a.episodes !== "—" ? " · Anime " + JJK.escapeHtml(a.episodes) : ""}</div>
-          <h3>${JJK.escapeHtml(a.title)}</h3>
-          <p>${JJK.escapeHtml(a.summary)}</p>
-          <span class="arc-more">Detay ve oku →</span>
+    if (!list.length) {
+      host.innerHTML = `<div class="manga-empty"><strong>Eşleşen cilt bulunamadı.</strong><span>Arama kelimesini veya filtreyi değiştir.</span></div>`;
+      return;
+    }
+
+    host.innerHTML = list.map((volume) => `
+      <article class="volume-card ${read[volume.id] ? "is-read" : ""}" data-id="${volume.id}">
+        <button class="volume-cover-button" data-action="details" aria-label="Cilt ${volume.number} detaylarını aç">
+          <img src="${JJK.escapeHtml(volume.cover)}" alt="Jujutsu Kaisen Cilt ${volume.number} kapağı" loading="lazy" />
+          <span class="volume-number">CİLT ${String(volume.number).padStart(2, "0")}</span>
+          <span class="volume-read-mark" aria-hidden="true">✓</span>
+          <span class="volume-cover-shine"></span>
+        </button>
+        <div class="volume-card-body">
+          <span class="volume-arc">${JJK.escapeHtml(volume.arc)}</span>
+          <h3>${JJK.escapeHtml(volume.title)}</h3>
+          <p>Bölüm ${JJK.escapeHtml(volume.chapters)}</p>
+          <div class="volume-card-actions">
+            <button class="volume-link" data-action="details">Detaylar</button>
+            <button class="volume-check ${read[volume.id] ? "checked" : ""}" data-action="toggle" aria-pressed="${read[volume.id] ? "true" : "false"}">${read[volume.id] ? "✓ Okundu" : "+ Okundu"}</button>
+          </div>
         </div>
-        <label class="switch" title="Okundu olarak işaretle">
-          <input type="checkbox" data-id="${a.id}" ${read[a.id] ? "checked" : ""}>
-          <span class="track"></span>
-        </label>
-      </div>`
-    ).join("");
-
-    // Okuma anahtarı (modalı açmasın)
-    host.querySelectorAll(".switch").forEach((sw) => {
-      sw.addEventListener("click", (e) => e.stopPropagation());
-    });
-    host.querySelectorAll("input[type=checkbox]").forEach((cb) => {
-      cb.addEventListener("change", () => {
-        setRead(cb.dataset.id, cb.checked);
-        cb.closest(".arc-card").classList.toggle("done", cb.checked);
-      });
-    });
-
-    // Karta tıkla → detay modalı
-    host.querySelectorAll(".arc-card").forEach((card) => {
-      card.addEventListener("click", () => openModal(card.dataset.id));
-    });
-  }
-
-  function setRead(id, val) {
-    if (val) read[id] = true; else delete read[id];
-    save();
-    renderStats();
+      </article>`).join("");
   }
 
   function openModal(id) {
-    const a = ARCS.find((x) => x.id === id);
-    if (!a) return;
+    const volume = volumes.find((item) => item.id === id);
     const overlay = document.querySelector("#mangaModal");
-    const isRead = !!read[id];
+    if (!volume || !overlay) return;
+
     overlay.querySelector(".modal").innerHTML = `
-      <div class="modal-head">
-        <img src="${JJK.escapeHtml(a.img)}" alt="${JJK.escapeHtml(a.title)}" />
-        <button class="modal-close" aria-label="Kapat">&times;</button>
-      </div>
-      <div class="modal-body">
-        <h2>${JJK.escapeHtml(a.title)}</h2>
-        <div class="stat-row">
-          <div class="stat"><div class="k">Bölümler</div><div class="v">${JJK.escapeHtml(a.chapters)}</div></div>
-          <div class="stat"><div class="k">Anime</div><div class="v">${JJK.escapeHtml(a.episodes || "—")}</div></div>
+      <button class="modal-close manga-modal-close" aria-label="Kapat">&times;</button>
+      <div class="manga-modal-layout">
+        <div class="manga-modal-cover">
+          <img src="${JJK.escapeHtml(volume.cover)}" alt="Jujutsu Kaisen Cilt ${volume.number} kapağı" />
+          <span>CİLT ${String(volume.number).padStart(2, "0")}</span>
         </div>
-        <p class="blurb">${JJK.escapeHtml(a.longSummary)}</p>
-        <h4 class="event-title">Öne çıkan olaylar</h4>
-        <ul class="event-list">
-          ${a.keyEvents.map((e) => `<li>${JJK.escapeHtml(e)}</li>`).join("")}
-        </ul>
-        <div class="share-row" style="justify-content:flex-start;margin-top:22px">
-          <button class="btn" id="readMangaPlus">📖 MANGA Plus'ta Oku</button>
-          <button class="btn btn-outline" id="readViz">VIZ</button>
-          <button class="btn btn-outline" id="toggleRead">${isRead ? "✓ Okundu" : "Okundu işaretle"}</button>
+        <div class="manga-modal-content">
+          <span class="manga-modal-kicker">${JJK.escapeHtml(volume.arc)}</span>
+          <h2>${JJK.escapeHtml(volume.title)}</h2>
+          <div class="manga-modal-meta">
+            <div><small>BÖLÜMLER</small><strong>${JJK.escapeHtml(volume.chapters)}</strong></div>
+            <div><small>SIRA</small><strong>${volume.number === 0 ? "Ön Hikâye" : `${volume.number} / 30`}</strong></div>
+            <div><small>DURUM</small><strong>${read[id] ? "Okundu" : "Okunmadı"}</strong></div>
+          </div>
+          <p>${JJK.escapeHtml(volume.summary)}</p>
+          <div class="manga-modal-actions">
+            <button class="btn" data-modal-action="reader">Okumaya devam et ↗</button>
+            <button class="btn btn-outline" data-modal-action="preview">Cildi önizle ↗</button>
+            <button class="btn btn-outline" data-modal-action="toggle">${read[id] ? "✓ Okundu" : "Okundu işaretle"}</button>
+          </div>
+          <div class="manga-modal-legal">Resmî okuyucudaki bölüm erişimi ve ücretsiz önizleme miktarı ülkeye veya üyelik durumuna göre değişebilir.</div>
         </div>
       </div>`;
-    overlay.classList.add("open");
 
-    overlay.querySelector(".modal-close").addEventListener("click", closeModal);
-    overlay.querySelector("#readMangaPlus").addEventListener("click", () => JJK.openExternal(DATA.readUrl));
-    overlay.querySelector("#readViz").addEventListener("click", () => JJK.openExternal(DATA.vizUrl));
-    overlay.querySelector("#toggleRead").addEventListener("click", (ev) => {
-      const now = !read[id];
-      setRead(id, now);
-      ev.target.textContent = now ? "✓ Okundu" : "Okundu işaretle";
-      // arkadaki kartı da güncelle
-      const card = document.querySelector(`.arc-card[data-id="${id}"]`);
-      if (card) {
-        card.classList.toggle("done", now);
-        const cb = card.querySelector("input[type=checkbox]");
-        if (cb) cb.checked = now;
-      }
+    overlay.classList.add("open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+
+    overlay.querySelector(".manga-modal-close").addEventListener("click", closeModal);
+    overlay.querySelector('[data-modal-action="reader"]').addEventListener("click", () => JJK.openExternal(data.vizReaderUrl));
+    overlay.querySelector('[data-modal-action="preview"]').addEventListener("click", () => JJK.openExternal(volume.vizUrl));
+    overlay.querySelector('[data-modal-action="toggle"]').addEventListener("click", () => {
+      setRead(id, !read[id]);
+      closeModal();
+      openModal(id);
     });
   }
 
   function closeModal() {
-    document.querySelector("#mangaModal").classList.remove("open");
+    const overlay = document.querySelector("#mangaModal");
+    if (!overlay) return;
+    overlay.classList.remove("open");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  }
+
+  function bindEvents() {
+    document.querySelector("#volumeGrid").addEventListener("click", (event) => {
+      const action = event.target.closest("[data-action]");
+      const card = event.target.closest(".volume-card");
+      if (!action || !card) return;
+      if (action.dataset.action === "toggle") setRead(card.dataset.id, !read[card.dataset.id]);
+      else openModal(card.dataset.id);
+    });
+
+    document.querySelector("#mangaSearch").addEventListener("input", (event) => {
+      query = event.target.value.trim().toLocaleLowerCase("tr");
+      renderVolumes();
+    });
+
+    document.querySelector("#mangaFilters").addEventListener("click", (event) => {
+      const button = event.target.closest("[data-filter]");
+      if (!button) return;
+      activeFilter = button.dataset.filter;
+      document.querySelectorAll("#mangaFilters [data-filter]").forEach((item) => item.classList.toggle("selected", item === button));
+      renderVolumes();
+    });
+
+    document.querySelector("#resetTracker").addEventListener("click", () => {
+      read = {};
+      saveProgress();
+      renderStats();
+      renderVolumes();
+      JJK.toast("Manga okuma ilerlemesi sıfırlandı.");
+    });
+
+    document.querySelector("#openMangaPlus").addEventListener("click", () => JJK.openExternal(data.mangaPlusUrl));
+    document.querySelector("#openVizReader").addEventListener("click", () => JJK.openExternal(data.vizReaderUrl));
+
+    const overlay = document.querySelector("#mangaModal");
+    overlay.addEventListener("click", (event) => { if (event.target === overlay) closeModal(); });
+    document.addEventListener("keydown", (event) => { if (event.key === "Escape") closeModal(); });
   }
 
   async function init() {
-    const host = document.querySelector("#arcList");
+    const host = document.querySelector("#volumeGrid");
     if (!host) return;
-    try { DATA = await JJK.fetchJSON("data/manga.json"); }
-    catch (e) {
-      host.innerHTML = `<p class="empty">Manga verisi yüklenemedi: ${JJK.escapeHtml(e.message)}</p>`;
-      return;
+    try {
+      data = await JJK.fetchJSON("data/manga.json");
+      volumes = data.volumes;
+      loadProgress();
+      renderStats();
+      renderVolumes();
+      bindEvents();
+    } catch (error) {
+      host.innerHTML = `<p class="empty">Manga kütüphanesi yüklenemedi: ${JJK.escapeHtml(error.message)}</p>`;
     }
-    ARCS = DATA.arcs;
-    load();
-    render();
-    renderStats();
-
-    const overlay = document.querySelector("#mangaModal");
-    if (overlay) {
-      overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModal(); });
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeModal(); });
-    }
-
-    const resetBtn = document.querySelector("#resetTracker");
-    if (resetBtn)
-      resetBtn.addEventListener("click", () => {
-        read = {};
-        save();
-        render();
-        renderStats();
-        JJK.toast("Takip listesi sıfırlandı.");
-      });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();

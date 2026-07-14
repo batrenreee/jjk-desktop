@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JJK Merkez — Manga</title>
+    <title>JJK Merkez — Manga Kütüphanesi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/app.css" />
@@ -11,26 +11,67 @@
   <body data-page="manga">
     <div id="topbar"></div>
 
-    <main>
-      <div class="section">
-        <div class="section-head">
-          <h2>Manga Takip Listesi</h2>
-          <span class="sub">Okuduğun arkları işaretle — ilerlemen cihazında saklanır</span>
-          <div class="toolbar">
-            <button class="chip" id="resetTracker">Sıfırla</button>
+    <section class="manga-library-hero">
+      <div class="manga-hero-copy">
+        <span class="manga-eyebrow">Gege Akutami'nin tamamlanmış ana serisi</span>
+        <h1>Lanetlerin<br />Kütüphanesi</h1>
+        <p>Cilt 0'dan finale kadar bütün Jujutsu Kaisen koleksiyonunu sırayla keşfet, ilerlemeni kaydet ve resmî kaynaktan okumaya devam et.</p>
+        <div class="manga-hero-actions">
+          <button class="btn" id="openMangaPlus">MANGA Plus'ta Oku</button>
+          <button class="btn btn-outline" id="openVizReader">VIZ Okuyucu</button>
+        </div>
+      </div>
+      <div class="manga-hero-books" aria-hidden="true">
+        <img src="img/manga/volume-00.jpg" alt="" />
+        <img src="img/manga/volume-15.jpg" alt="" />
+        <img src="img/manga/volume-30.jpg" alt="" />
+      </div>
+    </section>
+
+    <main class="manga-library-main">
+      <section class="section manga-library-section">
+        <div class="manga-library-heading">
+          <div>
+            <span class="manga-section-index">Koleksiyon 00–30</span>
+            <h2>Bütün Ciltler</h2>
+            <p>Kapaklara göre sırala, aradığın cildi bul ve kaldığın yeri cihazında sakla.</p>
+          </div>
+          <div class="manga-progress-ring" id="mangaProgressRing" aria-label="Okuma ilerlemesi">
+            <strong>0%</strong><span>tamamlandı</span>
           </div>
         </div>
 
-        <div class="tracker-stats" id="trackerStats"></div>
+        <div class="tracker-stats manga-stats" id="trackerStats"></div>
 
-        <div class="arc-list" id="arcList">
-          <p class="empty">Yükleniyor...</p>
+        <div class="manga-toolbar" aria-label="Manga filtreleri">
+          <label class="manga-search">
+            <span aria-hidden="true">⌕</span>
+            <input id="mangaSearch" type="search" placeholder="Cilt, bölüm veya hikâye dönemi ara…" autocomplete="off" />
+          </label>
+          <div class="manga-filters" id="mangaFilters">
+            <button class="chip selected" data-filter="all">Tümü</button>
+            <button class="chip" data-filter="unread">Okunmadı</button>
+            <button class="chip" data-filter="read">Okundu</button>
+          </div>
+          <button class="chip manga-reset" id="resetTracker">İlerlemeyi sıfırla</button>
         </div>
-      </div>
+
+        <div class="volume-grid" id="volumeGrid">
+          <p class="empty">Kütüphane hazırlanıyor…</p>
+        </div>
+
+        <div class="official-reading-note">
+          <span class="official-badge">RESMÎ OKUMA</span>
+          <div>
+            <strong>Mangayı güvenli ve yasal kaynaktan oku.</strong>
+            <p>Uygulama manga sayfalarını kopyalamaz. Her cildin “Önizle” düğmesi VIZ sayfasını, “Okumaya devam et” düğmesi ise bölgenizde kullanılabilen resmî okuyucuyu açar.</p>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <div class="modal-overlay" id="mangaModal">
-      <div class="modal"></div>
+    <div class="modal-overlay" id="mangaModal" aria-hidden="true">
+      <div class="modal manga-volume-modal"></div>
     </div>
 
     <div id="footer"></div>
