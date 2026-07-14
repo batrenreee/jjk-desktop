@@ -1,10 +1,11 @@
 {
   "name": "jjk-desktop",
   "private": true,
-  "version": "0.2.5",
+  "version": "0.2.6",
   "type": "module",
   "scripts": {
-    "tauri": "tauri"
+    "tauri": "tauri",
+    "news:update": "node scripts/update-news-feed.mjs"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^2"

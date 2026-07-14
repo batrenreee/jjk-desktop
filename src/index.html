@@ -29,8 +29,8 @@
         </div>
         <div class="hero-status">
           <span>SON GÜNCELLEME</span>
-          <strong>14 Temmuz 2026</strong>
-          <small>Resmî ve güvenilir kaynaklar</small>
+          <strong id="feedUpdatedAt">Haberler hazırlanıyor</strong>
+          <small id="feedStatus">Yerel haber arşivi yükleniyor</small>
         </div>
       </section>
 
@@ -40,7 +40,7 @@
       </section>
 
       <section class="home-dashboard">
-        <div class="dashboard-stat"><span class="stat-icon">◉</span><div><strong id="newsTotal">—</strong><small>doğrulanmış haber</small></div></div>
+        <div class="dashboard-stat"><span class="stat-icon">◉</span><div><strong id="newsTotal">—</strong><small>toplam haber</small></div></div>
         <div class="dashboard-stat"><span class="stat-icon">▤</span><div><strong id="categoryTotal">—</strong><small>gündem kategorisi</small></div></div>
         <div class="dashboard-stat"><span class="stat-icon">☆</span><div><strong id="savedTotal">0</strong><small>okuma listende</small></div></div>
         <div class="dashboard-links">
@@ -52,7 +52,11 @@
       <section class="news-section" id="latestNews">
         <header class="news-section-head">
           <div><span class="section-kicker">HABER AKIŞI</span><h2>Son gelişmeler</h2><p>Bir habere tıklayarak uygulamadan ayrılmadan ayrıntılı Türkçe özetini okuyabilirsin.</p></div>
-          <div class="news-search-wrap"><span>⌕</span><input id="newsSearch" type="search" placeholder="Haberlerde ara…" autocomplete="off" /></div>
+          <div class="news-head-actions">
+            <div class="feed-state" id="feedState"><i></i><span>Akış hazırlanıyor</span></div>
+            <button class="news-refresh" id="newsRefresh" type="button" aria-label="Haberleri şimdi yenile"><span>↻</span> Haberleri yenile</button>
+            <div class="news-search-wrap"><span>⌕</span><input id="newsSearch" type="search" placeholder="Haberlerde ara…" autocomplete="off" /></div>
+          </div>
         </header>
 
         <div class="news-toolbar">
