@@ -119,7 +119,7 @@
     if (footerHost) {
       footerHost.outerHTML = `
         <footer>
-          <p>&copy; 2025 Jujutsu Kaisen Merkez — Hayran projesi | Hazırlayan: Eren</p>
+          <p>&copy; 2026 Jujutsu Kaisen Merkez — Hayran projesi | Hazırlayan: Eren</p>
         </footer>`;
     }
   }

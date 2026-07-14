@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JJK Merkez — Ana Sayfa</title>
+    <title>JJK Merkez — Haber Merkezi</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/app.css" />
@@ -11,28 +11,75 @@
   <body data-page="home">
     <div id="topbar"></div>
 
-    <section class="hero">
-      <video autoplay muted loop playsinline poster="img/opening.jpg">
-        <source src="videos/jujutsu-kaisen.mp4" type="video/mp4" />
-      </video>
-      <h1>Jujutsu Kaisen</h1>
-      <p>En güncel anime ve manga haberleri — masaüstünde</p>
-    </section>
+    <main class="home-page">
+      <section class="home-hero" id="featuredStory">
+        <video autoplay muted loop playsinline poster="img/opening.jpg" aria-hidden="true">
+          <source src="videos/jujutsu-kaisen.mp4" type="video/mp4" />
+        </video>
+        <div class="home-hero-shade"></div>
+        <div class="home-hero-content">
+          <span class="live-pill"><i></i> JJK GÜNDEMİ</span>
+          <div class="featured-meta" id="featuredMeta">Güncel haberler yükleniyor…</div>
+          <h1 id="featuredTitle">Jujutsu Kaisen Haber Merkezi</h1>
+          <p id="featuredExcerpt">Anime, manga, oyun ve etkinlik dünyasındaki gelişmeleri Türkçe özetlerle tek yerde takip et.</p>
+          <div class="featured-actions">
+            <button class="btn" id="readFeatured" disabled>Haberi oku <span>→</span></button>
+            <a class="btn btn-glass" href="#latestNews">Tüm haberler</a>
+          </div>
+        </div>
+        <div class="hero-status">
+          <span>SON GÜNCELLEME</span>
+          <strong>14 Temmuz 2026</strong>
+          <small>Resmî ve güvenilir kaynaklar</small>
+        </div>
+      </section>
 
-    <main>
-      <div class="section">
-        <div class="section-head">
-          <h2>Son Haberler</h2>
-          <span class="sub">Bir karta tıkla, haber sistem tarayıcında açılsın</span>
+      <section class="ticker" aria-label="Gündem başlıkları">
+        <strong>GÜNDEM</strong>
+        <div class="ticker-track" id="tickerTrack"><span>Haberler hazırlanıyor…</span></div>
+      </section>
+
+      <section class="home-dashboard">
+        <div class="dashboard-stat"><span class="stat-icon">◉</span><div><strong id="newsTotal">—</strong><small>doğrulanmış haber</small></div></div>
+        <div class="dashboard-stat"><span class="stat-icon">▤</span><div><strong id="categoryTotal">—</strong><small>gündem kategorisi</small></div></div>
+        <div class="dashboard-stat"><span class="stat-icon">☆</span><div><strong id="savedTotal">0</strong><small>okuma listende</small></div></div>
+        <div class="dashboard-links">
+          <a href="karakterler.html"><span>Karakter Vikisi</span><b>129 profili incele →</b></a>
+          <a href="manga.html"><span>Manga Rehberi</span><b>Arkları takip et →</b></a>
         </div>
-        <div class="news-grid" id="newsGrid">
-          <p class="empty">Yükleniyor...</p>
+      </section>
+
+      <section class="news-section" id="latestNews">
+        <header class="news-section-head">
+          <div><span class="section-kicker">HABER AKIŞI</span><h2>Son gelişmeler</h2><p>Bir habere tıklayarak uygulamadan ayrılmadan ayrıntılı Türkçe özetini okuyabilirsin.</p></div>
+          <div class="news-search-wrap"><span>⌕</span><input id="newsSearch" type="search" placeholder="Haberlerde ara…" autocomplete="off" /></div>
+        </header>
+
+        <div class="news-toolbar">
+          <div class="news-categories" id="newsCategories"></div>
+          <select class="select" id="newsSort" aria-label="Haber sıralaması">
+            <option value="newest">En yeni</option>
+            <option value="oldest">En eski</option>
+            <option value="shortest">Kısa okuma</option>
+          </select>
         </div>
-      </div>
+
+        <div class="news-layout">
+          <div class="news-feed" id="newsGrid"><p class="empty">Haberler yükleniyor…</p></div>
+          <aside class="news-sidebar">
+            <section class="sidebar-card"><div class="sidebar-title"><span>Öne çıkanlar</span><b>Bu hafta</b></div><div id="trendingList"></div></section>
+            <section class="sidebar-card source-card"><span class="source-mark">✓</span><h3>Kaynak şeffaflığı</h3><p>Haber özetleri resmî Jujutsu Kaisen kanalları ve güvenilir yayınlardan hazırlanır. Her haber maddesinde asıl kaynağa erişebilirsin.</p></section>
+            <section class="sidebar-card quick-card"><h3>Hızlı erişim</h3><a href="karakterler.html">Karakterleri keşfet <span>→</span></a><a href="test.html">Karakter testini çöz <span>→</span></a><a href="game.html">Lanet düellosu oyna <span>→</span></a></section>
+          </aside>
+        </div>
+      </section>
     </main>
 
-    <div id="footer"></div>
+    <div class="modal-overlay news-reader-overlay" id="newsModal" role="dialog" aria-modal="true" aria-label="Haber detayı">
+      <article class="modal news-reader"></article>
+    </div>
 
+    <div id="footer"></div>
     <script src="js/app.js"></script>
     <script src="js/news.js"></script>
   </body>
