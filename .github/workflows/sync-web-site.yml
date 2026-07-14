@@ -47,6 +47,8 @@ jobs:
             's#https://raw.githubusercontent.com/batrenreee/jjk-desktop/main/src/data/live-news.json#https://raw.githubusercontent.com/batrenreee/jujutsu_site/main/data/live-news.json#g' \
             site/js/news.js
 
+          printf '%s\n' "$GITHUB_SHA" > site/.desktop-source-commit
+
       - name: Degisiklikleri web reposuna gonder
         working-directory: site
         shell: bash
