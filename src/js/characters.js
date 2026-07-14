@@ -85,7 +85,7 @@
     ["gakuganji-guitar","Moccus","モックス","Diğer","Yaga'nın Lanetli Cesetleri","Uygulanamaz","Yaga tarafından yaratılmış, dövüşte kullanılabilen lanetli cesetlerden biri.","Lanetli Ceset|Yakın dövüş"],
     ["noritoshi-ancestor","Noritoshi Kamo (Ata)","加茂 憲倫","Büyücü","Kamo Klanı","Hayatını kaybetti","Tarihin en kötü büyücüsü olarak anılan beden; gerçekte Kenjaku tarafından ele geçirilmişti.","Kan Manipülasyonu|Ölüm Tablosu deneyleri|Kenjaku"],
     ["michizane-sugawara","Michizane Sugawara","菅原 道真","Büyücü","Tarihi Büyücüler","Hayatını kaybetti","Japonya'nın üç büyük intikamcı ruhundan biri; Gojo ve Yuta'nın uzak atası.","Büyük intikamcı ruh|Gojo soyu"],
-    ["yoshiko","Yoshiko","吉子","Sivil","Geçmiş","Bilinmiyor","Resmî fanbook ve yan anlatılarda adı geçen yardımcı karakter.","Sivil"],
+    ["shigeru-sonoda","Shigeru Sonoda","園田 茂","Lanet Kullanıcısı","Geto'nun Grubu","Hayatını kaybetti","Suguru Geto'nun eski destekçilerinden; Yuta ve Rika'nın gücünü ele geçirmeyi amaçlayan lanet kullanıcısı.","Lanet enerjisi|Geto ile bağ"],
     ["takada-manager","Takada'nın Menajeri","高田のマネージャー","Sivil","Eğlence Dünyası","Hayatta","Takada-chan'ın etkinliklerini yöneten yardımcı karakter.","Menajerlik"],
     ["keita-oe","Keita Oe","大江 圭太","Sivil","Saitama Urami Hastanesi","Bilinmiyor","Cursed Womb: Death Painting olayları çevresinde adı geçen öğrenci.","Sivil"],
     ["shota-ito","Shota Ito","伊藤 翔太","Sivil","Saitama Urami Hastanesi","Bilinmiyor","Yasohachi Köprüsü vakasıyla bağlantılı yardımcı karakter.","Sivil"],
@@ -97,6 +97,7 @@
 
   const FEATURED = ["yuji","megumi","nobara","gojo","sukuna","yuta","maki","kenjaku","geto","toji","nanami","choso","mahito","higuruma","kashimo"];
   const FINAL_STATUS = {gojo:"Hayatını kaybetti",nobara:"Hayatta",sukuna:"Hayatını kaybetti",kenjaku:"Hayatını kaybetti",higuruma:"Hayatta",uraume:"Hayatını kaybetti",tengen:"Bilinmiyor"};
+  const IMAGE_NOTES = {angel:"Angel, Hana Kurusu ile aynı bedeni paylaşır; görsel ortak bedenlerini gösterir.","michizane-sugawara":"Kanonda resmî yüz tasarımı bulunmadığı için kamu malı tarihsel Sugawara no Michizane portresi kullanılmıştır."};
   const DETAILS = {
     yuji:{role:"Başkahraman • Tokyo birinci sınıf öğrencisi",abilities:["İnsanüstü fizik ve yakın dövüş sezgisi","Divergent Fist ve art arda Kara Şimşek kullanımı","Kan Manipülasyonu ve Shrine tekniğinin uyanışı","Ters Lanet Tekniği ve ruhu hedefleyebilen darbeler"],weaknesses:["Kendini başkaları için feda etmeye yatkın olması","Tekniklerini serinin son bölümünde yeni öğreniyor olması","Yoğun suçluluk duygusu ve travma"],story:"Sukuna'nın parmağını yutarak büyücülük dünyasına girer. Büyükbabasının ‘insanlara yardım et’ vasiyetini izler; Shibuya'nın yıkımı, Culling Game ve Shinjuku hesaplaşması boyunca bir insanın nasıl ölmesi gerektiği sorusuyla yüzleşir."},
     gojo:{role:"Özel sınıf büyücü • Öğretmen",abilities:["Limitless ile uzay üzerinde mutlak düzeyde kontrol","Six Eyes sayesinde olağanüstü algı ve enerji verimliliği","Blue, Red ve Hollow Purple","Unlimited Void alanı ve Ters Lanet Tekniği"],weaknesses:["Öğrencilerine ve sivillere verdiği değer stratejik olarak kullanılabilir","Prison Realm gibi özel mühür araçlarına karşı koşullu savunmasızlık","En güçlü olması nedeniyle sistemi tek başına taşıması"],story:"Gojo klanında Six Eyes ve Limitless ile doğar. Geto ile dostluğu ve Star Plasma Vessel görevi ideallerini şekillendirir. Eski düzeni yıkmak için güçlü öğrenciler yetiştirmeyi seçer ve Shinjuku'da Sukuna ile çağın kaderini belirleyen düelloya çıkar."},
@@ -119,13 +120,13 @@
 
   function normalizeExisting(c) {
     const detail = DETAILS[c.id] || {};
-    return {...c, status:FINAL_STATUS[c.id] || c.status, category:c.side, role:detail.role || `${c.grade} • ${c.affiliation}`, abilities:detail.abilities || c.tags, weaknesses:detail.weaknesses || ["Doğrulanmış belirgin bir zayıflık açıklanmadı; karşılaşmanın koşulları belirleyicidir."], story:detail.story || c.blurb, era:c.era || "Ana seri", spoiler:c.spoiler !== false, featured:FEATURED.indexOf(c.id)};
+    return {...c, img:`img/characters/${c.id}.webp`, imageNote:IMAGE_NOTES[c.id] || "", status:FINAL_STATUS[c.id] || c.status, category:c.side, role:detail.role || `${c.grade} • ${c.affiliation}`, abilities:detail.abilities || c.tags, weaknesses:detail.weaknesses || ["Doğrulanmış belirgin bir zayıflık açıklanmadı; karşılaşmanın koşulları belirleyicidir."], story:detail.story || c.blurb, era:c.era || "Ana seri", spoiler:c.spoiler !== false, featured:FEATURED.indexOf(c.id)};
   }
 
   function normalizeExtra(row, i) {
     const [id,name,jp,category,affiliation,status,blurb,tagText] = row;
     const tags = tagText.split("|");
-    return {id,name,jp,category,side:category,grade:category === "Büyücü" ? "Sınıf bilgisi yok" : "—",affiliation,status,blurb,tags,abilities:tags,weaknesses:["Kaynaklarda belirgin veya doğrulanmış bir zayıflık açıklanmadı."],story:blurb,img:"",era:"Ana seri",spoiler:true,featured:1000+i,role:`${category} • ${affiliation}`};
+    return {id,name,jp,category,side:category,grade:category === "Büyücü" ? "Sınıf bilgisi yok" : "—",affiliation,status,blurb,tags,abilities:tags,weaknesses:["Kaynaklarda belirgin veya doğrulanmış bir zayıflık açıklanmadı."],story:blurb,img:`img/characters/${id}.webp`,imageNote:IMAGE_NOTES[id] || "",era:"Ana seri",spoiler:true,featured:1000+i,role:`${category} • ${affiliation}`};
   }
 
   function avatar(c, large=false) {
@@ -167,7 +168,7 @@
     const c=ALL.find(x=>x.id===id); if(!c)return;
     const overlay=document.querySelector("#charModal"), hidden=c.spoiler&&!showSpoilers;
     overlay.querySelector(".modal").innerHTML=`
-      <header class="wiki-modal-head">${avatar(c,true)}<div class="modal-title"><div class="eyebrow">${JJK.escapeHtml(c.category)} • ${JJK.escapeHtml(c.affiliation)}</div><h2>${JJK.escapeHtml(c.name)}</h2><div class="jp">${JJK.escapeHtml(c.jp||"")}</div><p>${JJK.escapeHtml(c.role)}</p></div><button class="modal-close" aria-label="Kapat">×</button></header>
+      <header class="wiki-modal-head"><div class="modal-portrait">${avatar(c,true)}${c.imageNote?`<span class="image-note">${JJK.escapeHtml(c.imageNote)}</span>`:""}</div><div class="modal-title"><div class="eyebrow">${JJK.escapeHtml(c.category)} • ${JJK.escapeHtml(c.affiliation)}</div><h2>${JJK.escapeHtml(c.name)}</h2><div class="jp">${JJK.escapeHtml(c.jp||"")}</div><p>${JJK.escapeHtml(c.role)}</p></div><button class="modal-close" aria-label="Kapat">×</button></header>
       <nav class="article-nav"><button class="active" data-tab="overview">Genel bakış</button><button data-tab="power">Güçler</button><button data-tab="story">Hikâye</button></nav>
       <div class="modal-body wiki-article">
         <div class="article-tab active" data-panel="overview">

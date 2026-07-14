@@ -5,7 +5,7 @@ The new data-driven and interactive desktop application version of the old stati
 ## ✨ Features
 
 *   📰 **News Hub:** Dynamic cards sorted by date, powered by `data/news.json`. Clicking a news item opens it in the system's default browser.
-*   👤 **Character Wiki:** 129 character and entity profiles spanning the main manga through its finale; Turkish-aware search, category/affiliation/status filters, spoiler controls, images, techniques, weaknesses, story summaries, and detailed tabbed articles.
+*   👤 **Character Wiki:** 129 character and entity profiles spanning the main manga through its finale; complete local portrait coverage, face-focused responsive framing, Turkish-aware search, category/affiliation/status filters, spoiler controls, techniques, weaknesses, story summaries, and detailed tabbed articles.
 *   🎯 **Character Quiz:** Step-by-step interactive quiz with progress bars and scoring. Results can be copied or easily shared via 𝕏 / WhatsApp.
 *   📖 **Manga Tracker:** A tracking system where read arcs are stored in `localStorage`, displaying completion statistics.
 *   🎨 **Advanced Theme System:** Light/Dark mode support and 4 different accent color options (user preferences are saved locally).
