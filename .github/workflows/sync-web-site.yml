@@ -1,0 +1,63 @@
+name: Web sitesini guncelle
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-web-site
+  cancel-in-progress: true
+
+jobs:
+  sync-web-site:
+    if: github.repository == 'batrenreee/jjk-desktop'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Masaustu reposunu al
+        uses: actions/checkout@v7
+        with:
+          path: desktop
+
+      - name: Web reposunu al
+        uses: actions/checkout@v7
+        with:
+          repository: batrenreee/jujutsu_site
+          ref: main
+          ssh-key: ${{ secrets.WEB_REPO_DEPLOY_KEY }}
+          path: site
+
+      - name: Web dosyalarini esitle
+        shell: bash
+        run: |
+          rsync -a --delete \
+            --exclude='.git/' \
+            --filter='P .github/***' \
+            --filter='P scripts/***' \
+            --filter='P package.json' \
+            --filter='P README.md' \
+            --filter='P .nojekyll' \
+            desktop/src/ site/
+
+          sed -i \
+            's#https://raw.githubusercontent.com/batrenreee/jjk-desktop/main/src/data/live-news.json#https://raw.githubusercontent.com/batrenreee/jujutsu_site/main/data/live-news.json#g' \
+            site/js/news.js
+
+      - name: Degisiklikleri web reposuna gonder
+        working-directory: site
+        shell: bash
+        run: |
+          if git diff --quiet && [ -z "$(git status --porcelain)" ]; then
+            echo "Web sitesinde aktarilacak yeni degisiklik yok."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Sync from jjk-desktop ${GITHUB_SHA::7}"
+          git push origin HEAD:main
