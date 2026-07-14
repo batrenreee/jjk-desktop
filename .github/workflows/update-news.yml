@@ -1,6 +1,11 @@
 name: Haber akışını güncelle
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/update-news.yml"
+      - "scripts/update-news-feed.mjs"
   schedule:
     - cron: "17 */3 * * *"
   workflow_dispatch:
