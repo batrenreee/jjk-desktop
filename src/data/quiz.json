@@ -87,52 +87,52 @@
   "results": {
     "Gojo": {
       "name": "Satoru Gojo",
-      "img": "img/gojo.jpg",
+      "img": "img/characters/gojo.webp",
       "desc": "Sen mutlak güçsün! Kendine güvenin tavan yapmış durumda ama bunun altını fazlasıyla doldurabiliyorsun. Biraz gevşek görünebilirsin ama sevdiklerin ve doğru bildiklerin için dünyayı yakarsın. Sonsuzluk senin ellerinde!"
     },
     "Sukuna": {
       "name": "Ryomen Sukuna",
-      "img": "img/sukuna.jpg",
+      "img": "img/characters/sukuna.webp",
       "desc": "Sen Lanetlerin Kralı'sın! Kurallar, ahlak veya başkalarının ne düşündüğü zerre umurunda değil. Sadece kendi zevkine ve gücüne bakıyorsun. Kaostan besleniyorsun ve etrafındakiler senin salt gücünden korkuyor."
     },
     "Toji": {
       "name": "Toji Fushiguro",
-      "img": "img/toji.jpg",
+      "img": "img/characters/toji.webp",
       "desc": "Sen bir hayatta kalma uzmanısın! Kurallar, lanetler veya büyü umurunda değil; sen sadece saf fiziksel yeteneğin, zekân ve silahlarınla tanrıları bile dize getirebilirsin. Son derece pragmatiksin ve her şeyin bir bedeli olduğuna inanırsın."
     },
     "Yuta": {
       "name": "Yuta Okkotsu",
-      "img": "img/yuta.jpg",
+      "img": "img/characters/yuta.webp",
       "desc": "İçinde taşıdığın sevgi en büyük gücün! Dışarıdan naif, kibar ve sessiz görünebilirsin ama sevdiklerine zarar gelirse içinde uyanan o karanlık canavarı kimse durduramaz. Sınırsız bir potansiyelin var."
     },
     "Maki": {
       "name": "Maki Zenin",
-      "img": "img/maki.jpg",
+      "img": "img/characters/maki.webp",
       "desc": "Sen gerçek bir isyankârsın! Sana 'yapamazsın' diyen herkese, seni küçümseyen sisteme inat, sadece kendi azminle ve çelik gibi iradenle zirveye tırmanıyorsun. Silahlarla aran mükemmel ve asla boyun eğmiyorsun."
     },
     "Geto": {
       "name": "Suguru Geto",
-      "img": "img/geto.png",
+      "img": "img/characters/geto.webp",
       "desc": "Senin için büyük resim her şeyden önemli! İdeallerin uğruna en zor kararları almaktan çekinmiyorsun. Liderlik vasfın çok yüksek ve zekanla insanları (veya lanetleri) kendi etrafında toplamayı çok iyi biliyorsun."
     },
     "Nanami": {
       "name": "Kento Nanami",
-      "img": "img/nanami.jpg",
+      "img": "img/characters/nanami.webp",
       "desc": "Sen aklın ve mantığın sesisin! Fazla mesaiyi hiç sevmiyorsun, sorumluluklarının farkındasın ve her zaman işini en temiz, en kuralına uygun şekilde yapıp bitirmeye odaklısın. Olgun ve etrafındakiler için son derece güvenilir birisin."
     },
     "Itadori": {
       "name": "Yuji Itadori",
-      "img": "img/yuji.jpg",
+      "img": "img/characters/yuji.webp",
       "desc": "Senin kalbin altından! Fiziksel gücün inanılmaz ama asıl gücün sarsılmaz iraden, empatin ve sadakatin. Arkadaşların ve doğru olanı yapmak için her türlü acıya göğüs gerebilirsin."
     },
     "Megumi": {
       "name": "Megumi Fushiguro",
-      "img": "img/megumi.jpg",
+      "img": "img/characters/megumi.webp",
       "desc": "Potansiyelin sınır tanımıyor! Sessiz, sakin ve analitiksin. Gereksiz riskleri sevmezsin ama yeri geldiğinde sevdiklerin için gölgelerin içinden çıkan kontrolsüz bir canavara dönüşebilirsin."
     },
     "Nobara": {
       "name": "Nobara Kugisaki",
-      "img": "img/nobara.jpg",
+      "img": "img/characters/nobara.webp",
       "desc": "Sen sert, bağımsız ve inanılmaz havalısın! Kendin olmaktan, kendi tarzından asla taviz vermiyorsun. Çekiç ve çivilerinle düşmanlarına acımasızca korku salarken, dostlarına karşı oldukça koruyucusundur."
     }
   }

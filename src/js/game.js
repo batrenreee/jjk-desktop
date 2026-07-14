@@ -34,10 +34,6 @@
     kick:  { dur:24, active:[8,14], dmg:9, reach:24, kb:4.2, ku:-3,  stun:16 },
   };
 
-  // ---- Anime portreleri (kafa için) ----
-  const PORTRAITS = {};
-  ROSTER.forEach((r) => { const im = new Image(); im.src = "img/" + r.id + ".jpg"; PORTRAITS[r.id] = im; });
-
   // ---- Ses kısayolu ----
   const SND = (n) => { if (window.JJKAudio) window.JJKAudio.playSfx(n); };
 
@@ -659,7 +655,10 @@
     const host = document.getElementById("selectScreen");
     const faces = (i, who) => `
       <button class="fighter-chip ${who}" data-i="${i}">
-        <img class="chip-face" src="img/${ROSTER[i].id}.jpg" alt="${ROSTER[i].name}" loading="lazy" style="border-color:${ROSTER[i].accent}" />
+        <span class="chip-portrait" style="border-color:${ROSTER[i].accent}">
+          <img class="chip-face-bg" src="img/characters/${ROSTER[i].id}.webp" alt="" aria-hidden="true" />
+          <img class="chip-face" src="img/characters/${ROSTER[i].id}.webp" alt="${ROSTER[i].name}" loading="lazy" />
+        </span>
         <span>${ROSTER[i].name}</span>
       </button>`;
     const grid = (who) => ROSTER.map((_, i) => faces(i, who)).join("");

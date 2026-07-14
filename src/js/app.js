@@ -71,11 +71,31 @@
   }
 
   /* ---- Tema & Vurgu ---- */
-  function applyTheme(theme) {
-    document.documentElement.setAttribute("data-theme", theme);
-    localStorage.setItem("jjk-theme", theme);
-    const btn = document.querySelector("#themeToggle");
-    if (btn) btn.textContent = theme === "light" ? "🌙" : "☀️";
+  const THEMES = {
+    dark: { label: "Karanlık", icon: "◐" },
+    light: { label: "Aydınlık", icon: "☀" },
+    system: { label: "Sistem", icon: "◑" },
+  };
+
+  function applyTheme(mode) {
+    const safeMode = THEMES[mode] ? mode : "dark";
+    const resolved = safeMode === "system"
+      ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      : safeMode;
+    document.documentElement.setAttribute("data-theme", resolved);
+    document.documentElement.setAttribute("data-theme-mode", safeMode);
+    localStorage.setItem("jjk-theme-mode", safeMode);
+    localStorage.setItem("jjk-theme", resolved);
+    const button = document.querySelector("#themeToggle");
+    if (button) {
+      button.querySelector(".theme-icon").textContent = THEMES[safeMode].icon;
+      button.querySelector(".theme-label").textContent = THEMES[safeMode].label;
+      button.setAttribute("aria-label", `Tema: ${THEMES[safeMode].label}`);
+    }
+    document.querySelectorAll("[data-theme-option]").forEach((option) => {
+      option.classList.toggle("selected", option.dataset.themeOption === safeMode);
+      option.setAttribute("aria-checked", option.dataset.themeOption === safeMode ? "true" : "false");
+    });
   }
 
   function applyAccent(hex) {
@@ -110,7 +130,14 @@
           <nav class="nav-links" id="navLinks">${links}</nav>
           <div class="topbar-actions">
             <div class="accent-picker">${swatches}</div>
-            <button class="icon-btn" id="themeToggle" aria-label="Tema değiştir">☀️</button>
+            <div class="theme-control">
+              <button class="theme-toggle" id="themeToggle" aria-label="Tema seç" aria-haspopup="true" aria-expanded="false"><span class="theme-icon">◐</span><span class="theme-label">Karanlık</span><span class="theme-chevron">⌄</span></button>
+              <div class="theme-menu" id="themeMenu" role="menu" aria-label="Görünüm teması">
+                <button type="button" role="menuitemradio" data-theme-option="dark"><span>◐</span><b>Karanlık</b><small>Gece görünümü</small></button>
+                <button type="button" role="menuitemradio" data-theme-option="light"><span>☀</span><b>Aydınlık</b><small>Gündüz görünümü</small></button>
+                <button type="button" role="menuitemradio" data-theme-option="system"><span>◑</span><b>Sistem</b><small>Windows ile eşleş</small></button>
+              </div>
+            </div>
           </div>
         </header>`;
     }
@@ -127,12 +154,32 @@
   /* ---- Olaylar ---- */
   function wireEvents() {
     const themeBtn = document.querySelector("#themeToggle");
+    const themeMenu = document.querySelector("#themeMenu");
     if (themeBtn) {
       themeBtn.addEventListener("click", () => {
-        const cur = document.documentElement.getAttribute("data-theme");
-        applyTheme(cur === "light" ? "dark" : "light");
+        const open = themeMenu.classList.toggle("open");
+        themeBtn.setAttribute("aria-expanded", open ? "true" : "false");
       });
     }
+    document.querySelectorAll("[data-theme-option]").forEach((option) => {
+      option.addEventListener("click", () => {
+        applyTheme(option.dataset.themeOption);
+        themeMenu.classList.remove("open");
+        themeBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+    document.addEventListener("click", (event) => {
+      if (!event.target.closest(".theme-control")) {
+        themeMenu?.classList.remove("open");
+        themeBtn?.setAttribute("aria-expanded", "false");
+      }
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        themeMenu?.classList.remove("open");
+        themeBtn?.setAttribute("aria-expanded", "false");
+      }
+    });
 
     document.querySelectorAll(".swatch").forEach((s) => {
       s.addEventListener("click", () => applyAccent(s.dataset.hex));
@@ -187,14 +234,18 @@
   /* ---- Açılış ---- */
   function boot() {
     renderChrome();
-    applyTheme(localStorage.getItem("jjk-theme") || "dark");
+    applyTheme(localStorage.getItem("jjk-theme-mode") || localStorage.getItem("jjk-theme") || "dark");
     applyAccent(localStorage.getItem("jjk-accent") || "#ff4747");
     wireEvents();
     initReveal();
   }
 
   // window.JJK API
-  window.JJK = { fetchJSON, escapeHtml, openExternal, toast, observeReveal, ACCENTS };
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (localStorage.getItem("jjk-theme-mode") === "system") applyTheme("system");
+  });
+
+  window.JJK = { fetchJSON, escapeHtml, openExternal, toast, observeReveal, applyTheme, ACCENTS, THEMES };
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", boot);

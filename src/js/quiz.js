@@ -83,7 +83,10 @@
 
     app().innerHTML = `
       <div class="result-card">
-        <img src="${JJK.escapeHtml(r.img)}" alt="${JJK.escapeHtml(r.name)}" />
+        <div class="result-portrait">
+          <img class="result-portrait-bg" src="${JJK.escapeHtml(r.img)}" alt="" aria-hidden="true" />
+          <img class="result-portrait-main" src="${JJK.escapeHtml(r.img)}" alt="${JJK.escapeHtml(r.name)}" />
+        </div>
         <p style="color:var(--text-faint);letter-spacing:1px;text-transform:uppercase;font-size:.8rem">Sen busun</p>
         <h2>${JJK.escapeHtml(r.name)}</h2>
         <p class="desc">${JJK.escapeHtml(r.desc)}</p>
