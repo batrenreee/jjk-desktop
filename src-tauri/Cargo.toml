@@ -1,6 +1,6 @@
 [package]
 name = "jjk-desktop"
-version = "0.2.2"
+version = "0.2.3"
 description = "Jujutsu Kaisen fan hub desktop application"
 authors = ["Eren"]
 edition = "2021"

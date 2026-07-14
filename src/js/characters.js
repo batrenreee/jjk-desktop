@@ -130,7 +130,7 @@
   }
 
   function avatar(c, large=false) {
-    if (c.img) return `<img src="${JJK.escapeHtml(c.img)}" alt="${JJK.escapeHtml(c.name)}" ${large?"":"loading=\"lazy\""} />`;
+    if (c.img) return `<span class="portrait-art ${large?"large":""}"><img class="portrait-backdrop" src="${JJK.escapeHtml(c.img)}" alt="" aria-hidden="true" ${large?"":"loading=\"lazy\""} /><img class="portrait-main" src="${JJK.escapeHtml(c.img)}" alt="${JJK.escapeHtml(c.name)}" ${large?"":"loading=\"lazy\""} /></span>`;
     const initials = c.name.split(/\s+/).slice(0,2).map(x=>x[0]).join("");
     return `<div class="char-avatar ${large?"large":""}" aria-label="${JJK.escapeHtml(c.name)} görsel yer tutucusu"><span>${JJK.escapeHtml(initials)}</span><small>JJK</small></div>`;
   }
