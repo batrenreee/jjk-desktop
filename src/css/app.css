@@ -313,7 +313,7 @@ main { min-height: 60vh; }
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 0.4s;
 }
-.char-card:hover .portrait-main { transform: scale(1.025); }
+.char-card:hover .portrait-main { transform:none; }
 .char-card .grade-badge {
   position: absolute;
   top: 10px; left: 10px;
@@ -869,6 +869,10 @@ footer {
   object-position:center;
   object-fit:contain;
   filter:drop-shadow(0 7px 11px rgba(0,0,0,.48));
+}
+.wiki-results .char-card .ph .portrait-main {
+  object-fit:contain;
+  object-position:center;
 }
 .category-badge { position:absolute; right:8px; bottom:8px; padding:2px 7px; border-radius:6px; color:#fff; font-size:.66rem; font-weight:700; background:rgba(0,0,0,.72); }
 .jp-card { min-height:20px; color:var(--text-faint); font-size:.72rem; }
